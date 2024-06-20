@@ -11,11 +11,13 @@ const InitialScreen = ({ navigation }) => {
         if (email && password) {
           navigation.navigate('Home');
         } else {
-          navigation.navigate('Home');
+          // navigation.navigate('Home');
+          navigation.navigate('Login');
         }
       } catch (error) {
         console.error(error);
-        navigation.navigate('Home');
+        // navigation.navigate('Home');
+        navigation.navigate('Login');
       }
     };
 

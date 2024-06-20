@@ -16,6 +16,34 @@ function QRscannerScreen({ navigation }) {
     setLoading(true);
     setError(null);
 
+    // try {
+    //   const response = await fetch(`${BASE_URL}VoucherMasters/${data}`);
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+    //   const responseData = await response.json();
+    //   setLoading(false);
+    //   Alert.alert(
+    //     "Details",
+    //     `Voucher Name: ${responseData.voucher_name}\nVoucher Number: ${responseData.voucher_number}`,
+    //     [
+    //       {
+    //         text: "Continue",
+    //         onPress: () =>
+    //           navigation.navigate("InwardVoucher", { data: responseData }),
+    //       },
+    //     ],
+    //     { cancelable: false }
+    //   );
+    // } catch (err) {
+    //   setLoading(false);
+    //   setError("Error fetching details");
+    //   var temperr= err.json();
+    //   Alert.alert(json.stringify( temperr));
+    //   Alert.alert("Error", "Error fetching details");
+
+    // }
+
     try {
       const response = await fetch(`${BASE_URL}VoucherMasters/${data}`);
       if (!response.ok) {
@@ -29,8 +57,7 @@ function QRscannerScreen({ navigation }) {
         [
           {
             text: "Continue",
-            onPress: () =>
-              navigation.navigate("InwardVoucher", { data: responseData }),
+            onPress: () => navigation.navigate("InwardVoucher", { data: responseData }),
           },
         ],
         { cancelable: false }
@@ -38,11 +65,11 @@ function QRscannerScreen({ navigation }) {
     } catch (err) {
       setLoading(false);
       setError("Error fetching details");
-      var temperr= err.json();
-      Alert.alert(json.stringify( temperr));
-      Alert.alert("Error", "Error fetching details");
-
+    
+      // Show the error in an alert for debugging
+      Alert.alert("Error", `Error fetching details: ${err.message}`);
     }
+    
   };
 
   return (

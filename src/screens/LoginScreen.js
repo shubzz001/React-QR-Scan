@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
       }
     } catch (error) {
       console.error(error);
-      Alert.alert('An error occurred', 'Please try again later');
+      Alert.alert('An error occurred', `Please try again later ${error.message}`);
     }
   };
 
